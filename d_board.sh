@@ -24,10 +24,20 @@ pkg_is_installed()
     fi
 }
 
+# 1 - File, 2 - Old Line, 3 - New Line 
+replaceappend()
+{
+    if ! sed -i "/.*$2.*/{s//$3/;h};"'${x;/./{x;q0};x;q1}' $1
+    #sed -i '/display_rotate/c\display_rotate=3' /boot/config.txt
+    then
+        echo "$3" >> $1
+    fi
+}
+
 #-----------------------------User Commands--------------------------
 help()
 {
-    echo "This is help"
+    echo help.txt
 }
 
 create_autostart()
@@ -66,7 +76,7 @@ create_autostart()
 
 install()
 {
-    echo This will install packages to your device, continue? y or n
+    echo This will install packages to your device, continue? [Y/n]
     read response
 
     if [ $response = "y" ]; then
@@ -76,6 +86,25 @@ install()
     else
         echo "Reverting."
     fi
+}
+
+# 1 - New Rotation
+set_rotation()
+{
+    case "$1" in
+    0)
+        replaceappend /boot/config.txt display_rotate= display_rotate=0
+        ;;
+    90)
+        replaceappend /boot/config.txt display_rotate= display_rotate=1
+        ;;
+    180)
+        replaceappend /boot/config.txt display_rotate= display_rotate=2
+        ;;
+    270)
+        replaceappend /boot/config.txt display_rotate= display_rotate=3
+        ;;
+    esac
 }
 
 #---------------------------------------Main---------------------------
@@ -90,6 +119,9 @@ main_switch()
         ;;
     install)
         install
+        ;;
+    rotation)
+        set_rotation $2
         ;;
     *)
         echo "Remember to enable SSH and change default password. \n Use the -h or --help for help."

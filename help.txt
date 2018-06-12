@@ -1,0 +1,10 @@
+Usage: d_board [OPTIONS]
+
+---------------------------------------------------------------------
+|    Option    |              Meaning               |     Usage     |
+|--------------|----------------------------------------------------|
+| -h           | Output help text.                  | -h            |
+| install      | Install d_board dependencies.      | install       |
+| autostart    | Setup chromium autostart.          | autostart url |
+| rotation     | Set screen rotation.               | rotation deg  |
+---------------------------------------------------------------------
