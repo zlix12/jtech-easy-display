@@ -15,6 +15,8 @@ add_to_file()
 # 1 - Package Name
 pkg_is_installed()
 {
+    #Fix package check
+
     dpkg -s $1 &> /dev/null
 
     if [ $? -eq 0 ]; then
@@ -28,7 +30,6 @@ pkg_is_installed()
 replaceappend()
 {
     if ! sed -i "/.*$2.*/{s//$3/;h};"'${x;/./{x;q0};x;q1}' $1
-    #sed -i '/display_rotate/c\display_rotate=3' /boot/config.txt
     then
         echo "$3" >> $1
     fi
@@ -42,6 +43,9 @@ help()
 
 create_autostart()
 {
+    #add --force-device-scale-factor=0.5
+    #add incognito option
+
     pkg_is_installed xdotool
 
     mkdir -p bin
