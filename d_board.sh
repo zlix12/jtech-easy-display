@@ -49,26 +49,26 @@ create_autostart()
         echo '#Run browser after boot to desktop'
         echo '/bin/sleep 3'
         echo 'sudo -u pi chromium-browser --kiosk --incognito ' $1 ' &'
-    } > autostart_chromium.sh
+    } > bin/autostart_chromium.sh
 
-    sudo chmod +x "autostart_chromium.sh"
+    sudo chmod +x "bin/autostart_chromium.sh"
 
     #Create auto refresh script
     {
         echo '#Refresh browser every 90 seconds'
         echo '/bin/sleep 6'
         echo '/usr/bin/lxterminal --command watch -n 90 xdotool key ctrl+F5 &'
-    } > start_url_refresh.sh
+    } > bin/start_url_refresh.sh
 
-    sudo chmod +x "start_url_refresh.sh"
+    sudo chmod +x "bin/start_url_refresh.sh"
 
     as=/home/pi/.config/lxsession/LXDE-pi/autostart
 
     add_to_file "@xset s off" $as
     add_to_file "@xset -dpms" $as
     add_to_file "@xset s noblank" $as
-    add_to_file "@$(pwd)/autostart_chromium.sh" $as
-    add_to_file "@$(pwd)/start_url_refresh.sh" $as
+    add_to_file "@$(pwd)/bin/autostart_chromium.sh" $as
+    add_to_file "@$(pwd)/bin/start_url_refresh.sh" $as
     
     #Comment out xscreensaver line
     sed -i '/@xscreensaver -no-splash/s/^/#/' $as
