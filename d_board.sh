@@ -44,6 +44,8 @@ create_autostart()
 {
     pkg_is_installed xdotool
 
+    mkdir -p bin
+
     #Create autostart chromium script
     {
         echo '#Run browser after boot to desktop'
