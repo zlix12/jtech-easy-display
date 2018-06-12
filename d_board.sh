@@ -37,7 +37,7 @@ replaceappend()
 #-----------------------------User Commands--------------------------
 help()
 {
-    echo help.txt
+    cat help.txt
 }
 
 create_autostart()
