@@ -18,6 +18,22 @@ Clone the project
 git clone https://github.com/zlix12/jtech-easy-display
 ```
 
+Give the main file exec permissions
+
+```
+sudo chmod +x d_board.sh
+```
+
+### Deployment
+
+Same installation steps
+
+View help
+
+```
+./d_board.sh -h
+```
+
 ## Contributing
 
 Soon to come
