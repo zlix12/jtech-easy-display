@@ -68,7 +68,10 @@ create_autostart()
 
     sudo chmod +x "bin/start_url_refresh.sh"
 
+    #Create Directory if not exist
+    mkdir -p /home/pi/.config/lxsession/LXDE-pi/
     as=/home/pi/.config/lxsession/LXDE-pi/autostart
+    touch $as
 
     add_to_file "@xset s off" $as
     add_to_file "@xset -dpms" $as
