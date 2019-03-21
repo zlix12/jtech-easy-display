@@ -88,7 +88,7 @@ install()
     echo This will install packages to your device, continue? [Y/n]
     read response
 
-    if [ $response = "y" ]; then
+    if [ $response = "y" ] || [ $response = "Y" ]; then
         echo "Installing Packages."
 	    apt-get update
         apt-get install xdotool
