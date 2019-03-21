@@ -116,6 +116,28 @@ set_rotation()
     esac
 }
 
+connect_wifi()
+{
+    echo Is this a hidden network? [Y/n]
+    read response
+
+    echo Enter the WiFi SSID:
+    read ssid
+
+    echo Enter the Wifi Passkey:
+    read passkey
+
+    wpa=/etc/wap_supplicant/wpa_supplicant.conf
+    add_to_file "country=us" $wpa
+    add_to_file "network={" $wpa
+    add_to_file "   ssid=$ssid" $wpa
+    if [ $response = "y" ] || [ $response = "Y" ]; then
+        add_to_file "   scan_ssid=1" $wpa
+    fi
+    add_to_file "   psk=$passkey" $wpa
+    add_to_file "}" $wpa
+}
+
 #---------------------------------------Main---------------------------
 main_switch()
 {
