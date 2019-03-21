@@ -54,7 +54,7 @@ create_autostart()
     {
         echo '#Run browser after boot to desktop'
         echo '/bin/sleep 3'
-        echo 'sudo -u pi chromium-browser --kiosk --incognito --app=' $1 ' &'
+        echo 'sudo -u pi chromium-browser --kiosk --app=' $1 ' &'
     } > bin/autostart_chromium.sh
 
     sudo chmod +x "bin/autostart_chromium.sh"
