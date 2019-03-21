@@ -154,6 +154,9 @@ main_switch()
     rotation)
         set_rotation $2
         ;;
+    wifi)
+        connect_wifi
+        ;;
     *)
         echo "Remember to enable SSH and change default password. \n Use the -h or --help for help."
         ;;

@@ -7,5 +7,6 @@ Usage: d_board [OPTIONS]
 | install      | Install d_board dependencies.      | install       |
 | autostart    | Setup chromium autostart.          | autostart url |
 | rotation     | Set screen rotation.               | rotation deg  |
+| wifi         | Connect to a WiFi network.         | wifi          |
 ---------------------------------------------------------------------
 \n
