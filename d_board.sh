@@ -127,15 +127,19 @@ connect_wifi()
     echo Enter the Wifi Passkey:
     read passkey
 
-    wpa=/etc/wap_supplicant/wpa_supplicant.conf
-    add_to_file "country=us" $wpa
-    add_to_file "network={" $wpa
-    add_to_file "   ssid=$ssid" $wpa
+    wpa=/etc/wpa_supplicant/wpa_supplicant.conf
+    rm -f $wpa
+    touch $wpa
+    add_to_file "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev" $wpa
+    add_to_file "update_config=1" $wpa
+    add_to_file "country=US" $wpa
+    echo "network={" >> $wpa
+    echo    ssid=\"$ssid\" >> $wpa
     if [ $response = "y" ] || [ $response = "Y" ]; then
-        add_to_file "   scan_ssid=1" $wpa
+        echo "   scan_ssid=1" >> $wpa
     fi
-    add_to_file "   psk=$passkey" $wpa
-    add_to_file "}" $wpa
+    echo    psk=\"$passkey\" >> $wpa
+    echo "}" >> $wpa
 }
 
 #---------------------------------------Main---------------------------
