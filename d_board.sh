@@ -142,6 +142,24 @@ connect_wifi()
     echo "}" >> $wpa
 }
 
+change_overscan()
+{
+	echo If there is a black box around your screen, disable overscan. 
+	echo If you cannot see the edges of your display, enable overscan.
+	echo Would you like to have overscan enabled?
+	read response
+	
+	#Dual copies with each config to overwrite original.
+	osoncfg=/boot/config1.txt
+	osoffcfg=/boot/config2.txt
+	osorig=/boot/config.txt
+	if [ $response = "y" ] || [ $response = "Y" ]; then
+		cp $osoncfg $osorig
+	else
+		cp $osoffcfg $osorig
+	fi
+}
+
 #---------------------------------------Main---------------------------
 main_switch()
 {
@@ -161,6 +179,9 @@ main_switch()
     wifi)
         connect_wifi
         ;;
+	overscan)
+		change_overscan
+		;;
     *)
         echo "Remember to enable SSH and change default password. \n Use the -h or --help for help."
         ;;

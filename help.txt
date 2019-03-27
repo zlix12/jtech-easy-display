@@ -8,5 +8,5 @@ Usage: d_board [OPTIONS]
 | autostart    | Setup chromium autostart.          | autostart url |
 | rotation     | Set screen rotation.               | rotation deg  |
 | wifi         | Connect to a WiFi network.         | wifi          |
+| overscan     | Toggle overscan on/off.            | overscan      |
 ---------------------------------------------------------------------
-\n
