@@ -145,8 +145,8 @@ connect_wifi()
 change_overscan()
 {
 	echo If there is a black box around your screen, disable overscan. 
-	echo If you cannot see the edges of your display, enable overscan.
-	echo Would you like to have overscan enabled?
+	echo "If you cannot see the edges of your display, enable overscan."
+	echo Would you like to have overscan enabled? [Y/n]
 	read response
 	
 	#Dual copies with each config to overwrite original.
