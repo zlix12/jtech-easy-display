@@ -98,9 +98,9 @@ install()
 
     # Piggyback - config.txt copy initialization for overscan
     cp /boot/config.txt /boot/config1.txt
-    replaceappend /boot/config1.txt disable_autoscan= disable_autoscan=0
+    replaceappend /boot/config1.txt disable_overscan= disable_overscan=0
     cp /boot/config.txt /boot/config2.txt
-    replaceappend /boot/config2.txt disable_autoscan= disable_autoscan=1
+    replaceappend /boot/config2.txt disable_overscan= disable_overscan=1
 }
 
 # 1 - New Rotation
