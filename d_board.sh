@@ -139,7 +139,7 @@ connect_wifi()
     echo Enter the WiFi SSID:
     read ssid
 
-    echo Enter the Wifi Passkey:
+    echo Enter the WiFi Passkey:
     read passkey
 
     wpa=/etc/wpa_supplicant/wpa_supplicant.conf
