@@ -177,6 +177,18 @@ change_overscan()
 	fi
 }
 
+change_hostname()
+{
+    echo Enter the desired hostname: 
+    read hostname
+    rm -f /etc/hosts
+    touch /etc/hosts
+    echo 127.0.0.1  $hostname > /etc/hosts
+    rm -f /etc/hostname
+    touch /etc/hostname
+    echo $hostname > /etc/hostname
+}
+
 #---------------------------------------Main---------------------------
 main_switch()
 {
@@ -199,6 +211,9 @@ main_switch()
 	overscan)
 		change_overscan
 		;;
+    hostname)
+        change_hostname
+        ;;
     *)
         echo "Remember to enable SSH and change default password. \n Use the -h or --help for help."
         ;;

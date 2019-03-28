@@ -9,4 +9,5 @@ Usage: d_board [OPTIONS]
 | rotation     | Set screen rotation.               | rotation deg  |
 | wifi         | Connect to a WiFi network.         | wifi          |
 | overscan     | Toggle overscan on/off.            | overscan      |
+| hostname     | Change the hostname.               | hostname      |
 ---------------------------------------------------------------------
