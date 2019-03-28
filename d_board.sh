@@ -95,38 +95,23 @@ install()
     else
         echo "Reverting."
     fi
-
-    # Piggyback - config.txt copy initialization for overscan
-    cp /boot/config.txt /boot/config1.txt
-    replaceappend /boot/config1.txt disable_overscan= disable_overscan=0
-    cp /boot/config.txt /boot/config2.txt
-    replaceappend /boot/config2.txt disable_overscan= disable_overscan=1
 }
 
 # 1 - New Rotation
-# Must update all configs.
 set_rotation()
 {
     case "$1" in
     0)
         replaceappend /boot/config.txt display_rotate= display_rotate=0
-        replaceappend /boot/config1.txt display_rotate= display_rotate=0
-        replaceappend /boot/config2.txt display_rotate= display_rotate=0
         ;;
     90)
         replaceappend /boot/config.txt display_rotate= display_rotate=1
-        replaceappend /boot/config1.txt display_rotate= display_rotate=1
-        replaceappend /boot/config2.txt display_rotate= display_rotate=1
         ;;
     180)
         replaceappend /boot/config.txt display_rotate= display_rotate=2
-        replaceappend /boot/config1.txt display_rotate= display_rotate=2
-        replaceappend /boot/config2.txt display_rotate= display_rotate=2
         ;;
     270)
         replaceappend /boot/config.txt display_rotate= display_rotate=3
-        replaceappend /boot/config1.txt display_rotate= display_rotate=3
-        replaceappend /boot/config2.txt display_rotate= display_rotate=3
         ;;
     esac
 }
@@ -164,15 +149,13 @@ change_overscan()
 	echo Would you like to have overscan enabled? [Y/n]: 
 	read response
 	
-	#Dual copies with each config to overwrite original.
-	osoncfg=/boot/config1.txt
-	osoffcfg=/boot/config2.txt
+	#Switch setting.
 	osorig=/boot/config.txt
 	if [ $response = "y" ] || [ $response = "Y" ]; then
-		cp $osoncfg $osorig
+		replaceappend $osorig disable_overscan= disable_overscan=0
         echo "Overscan enabled.  Reboot to apply changes."
 	else
-		cp $osoffcfg $osorig
+		replaceappend $osorig disable_overscan= disable_overscan=1
         echo "Overscan disabled.  Reboot to apply changes."
 	fi
 }
