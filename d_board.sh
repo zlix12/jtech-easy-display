@@ -124,7 +124,7 @@ connect_wifi()
     echo Enter the WiFi SSID:
     read ssid
 
-    echo Enter the Wifi Passkey:
+    echo Enter the WiFi Passkey:
     read passkey
 
     wpa=/etc/wpa_supplicant/wpa_supplicant.conf
@@ -140,6 +140,36 @@ connect_wifi()
     fi
     echo    psk=\"$passkey\" >> $wpa
     echo "}" >> $wpa
+}
+
+change_overscan()
+{
+	echo If there is a black box around your screen, disable overscan. 
+	echo "If you cannot see the edges of your display, enable overscan."
+	echo Would you like to have overscan enabled? [Y/n]: 
+	read response
+	
+	#Switch setting.
+	osorig=/boot/config.txt
+	if [ $response = "y" ] || [ $response = "Y" ]; then
+		replaceappend $osorig disable_overscan= disable_overscan=0
+        echo "Overscan enabled.  Reboot to apply changes."
+	else
+		replaceappend $osorig disable_overscan= disable_overscan=1
+        echo "Overscan disabled.  Reboot to apply changes."
+	fi
+}
+
+change_hostname()
+{
+    echo Enter the desired hostname: 
+    read hostname
+    rm -f /etc/hosts
+    touch /etc/hosts
+    echo 127.0.0.1  $hostname > /etc/hosts
+    rm -f /etc/hostname
+    touch /etc/hostname
+    echo $hostname > /etc/hostname
 }
 
 #---------------------------------------Main---------------------------
@@ -160,6 +190,12 @@ main_switch()
         ;;
     wifi)
         connect_wifi
+        ;;
+	overscan)
+		change_overscan
+		;;
+    hostname)
+        change_hostname
         ;;
     *)
         echo "Remember to enable SSH and change default password. \n Use the -h or --help for help."

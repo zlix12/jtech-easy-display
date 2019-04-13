@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-None
+Currently - A Raspberry Pi running Raspbian.  Dependencies are installed by the script via apt-get.
 
 ### Installing
 
